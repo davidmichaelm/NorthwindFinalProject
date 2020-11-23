@@ -11,5 +11,9 @@ namespace Northwind.Models
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Shipper> Shippers { get; set; }
     }
 }
