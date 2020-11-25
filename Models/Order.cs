@@ -1,5 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Northwind.Models
 {
@@ -11,7 +13,8 @@ namespace Northwind.Models
         public int EmployeeId { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime RequiredDate { get; set; }
-        public DateTime ShippedDate { get; set; }
+        public DateTime? ShippedDate { get; set; }
+
         public int ShipVia { get; set; }
         public decimal Freight { get; set; }
         public string ShipName { get; set; }
@@ -23,5 +26,8 @@ namespace Northwind.Models
         
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
+        
+        [ForeignKey("ShipVia")]
+        public virtual Shipper Shipper { get; set; }
     }
 }

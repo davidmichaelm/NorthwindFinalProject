@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Northwind.Models
 {
@@ -19,5 +20,8 @@ namespace Northwind.Models
         public string HomePhone { get; set; }
         public string Extension { get; set; }
         public int ReportsTo { get; set; }
+        
+        [ForeignKey("ReportsTo")]
+        public Employee ReportsToEmployee { get; set; }
     }
 }
