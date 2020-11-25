@@ -19,7 +19,8 @@ namespace Northwind.Models
         public string Country { get; set; }
         public string HomePhone { get; set; }
         public string Extension { get; set; }
-        public int ReportsTo { get; set; }
+        public int? ReportsTo { get; set; }
+        
         
         [ForeignKey("ReportsTo")]
         public Employee ReportsToEmployee { get; set; }
