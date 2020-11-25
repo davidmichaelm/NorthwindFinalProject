@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,7 +12,7 @@ namespace Northwind.Models
         public int ProductId { get; set; }
         
         public decimal UnitPrice { get; set; }
-        public int Quantity { get; set; }
+        public Int16 Quantity { get; set; }
         public decimal Discount { get; set; }
         
         public virtual Order Order { get; set; }
