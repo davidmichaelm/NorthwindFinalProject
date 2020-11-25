@@ -20,6 +20,7 @@ namespace Northwind.Models
         public string HomePhone { get; set; }
         public string Extension { get; set; }
         public int? ReportsTo { get; set; }
+        public string Email { get; set; }
         
         
         [ForeignKey("ReportsTo")]

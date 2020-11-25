@@ -67,5 +67,20 @@ namespace Northwind.Models
             cartItem.Product = context.Products.Find(cartItem.ProductId);
             return cartItem;
         }
+        
+        public void EditEmployee(Employee employee)
+        {
+            var employeeToUpdate = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+            employeeToUpdate.FirstName = employee.FirstName;
+            employeeToUpdate.LastName = employee.LastName;
+            employeeToUpdate.TitleOfCourtesy = employee.TitleOfCourtesy;
+            employeeToUpdate.BirthDate = employee.BirthDate;
+            employeeToUpdate.Address = employee.Address;
+            employeeToUpdate.City = employee.City;
+            employeeToUpdate.Region = employee.Region;
+            employeeToUpdate.Country = employee.Country;
+            employeeToUpdate.HomePhone = employee.HomePhone;
+            context.SaveChanges();
+        }
     }
 }
