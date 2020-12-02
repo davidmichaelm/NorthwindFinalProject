@@ -50,11 +50,14 @@
                     }
                 </div>
             </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="employeeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-tie"></i> Employees
+                    <i class="fas fa-chalkboard-teacher"></i> Employees
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" asp-action="Index" asp-controller="Order"><i class="fas fa-search-dollar"></i>Browse Orders</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" asp-action="Account" asp-controller="Employee"><i class="fas fa-user"></i> Account</a>
                 </div>
             </li>
