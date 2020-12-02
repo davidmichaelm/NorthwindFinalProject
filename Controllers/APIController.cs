@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
@@ -34,5 +35,26 @@ namespace Northwind.Controllers
         [HttpPost, Route("api/addtocart")]
         // adds a row to the cartitem table
         public CartItem Post([FromBody] CartItemJSON cartItem) => repository.AddToCart(cartItem);
+
+        [HttpGet, Route("api/orderdetails")]
+        // returns all order details
+        public IEnumerable<OrderDetails> GetAllOrderDetails() => repository.OrderDetails.OrderBy(o => o.OrderId);
+        
+        [HttpGet, Route("api/employee")]
+        // returns all employees
+        public IEnumerable<Employee> GetAllEmployees() => repository.Employees.OrderBy(e => e.EmployeeId);
+        
+        [HttpGet, Route("api/shipper")]
+        // returns all orders
+        public IEnumerable<Shipper> GetAllShippers() => repository.Shippers.OrderBy(s => s.ShipperId);
+        
+        [HttpGet, Route("api/order")]
+        // returns all shipped orders
+        //public IEnumerable<Order> GetOrder() => repository.Orders.OrderBy(p => p.OrderId);
+        public IEnumerable<Order> GetOrders() => repository.Orders.Where(p => p.ShippedDate != null).OrderBy(p => p.OrderId);
+
+        [HttpGet, Route("api/order/unshipped")]
+        // returns all unshipped orders
+        public IEnumerable<Order> GetUnshippedOrders(DateTime? shipped) => repository.Orders.Where(p => p.ShippedDate == null).OrderBy(p => p.OrderId);
     }
 }
