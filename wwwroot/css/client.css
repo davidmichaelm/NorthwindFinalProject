@@ -24,3 +24,21 @@
 #product_rows tr {
     cursor: pointer;
 }
+
+.unshipped {
+    color:darkorange !important; 
+    opacity: .5 !important;
+}
+
+.overdue {
+    color:red !important;
+    opacity: .5 !important;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+#order_rows tr {
+    cursor: pointer;
+}

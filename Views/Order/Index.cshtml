@@ -4,26 +4,139 @@
 <div id="User" style="display:none;" data-email="@User.Identity.Name" data-customer="@User.IsInRole("Employee")"></div>
 <table class="table table-hover">
     <thead>
-        <tr>
-            <th scope="col">
-                <div class="form-row">
-                    <div class="form-group col-md-4 mb-0">
-                        <div class="form-check text-right">
-                            <input class="form-check-input" type="checkbox" id="Unshipped" checked>
-                            <label class="form-check-label" for="Unshipped">Unshipped</label>
-                        </div>
+    <tr>
+        <th scope="col">
+            <div class="form-row">
+                <div class="form-group col-md-4 mb-0">
+                    <div class="form-check text-left">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#colorKey">
+                            Color Key
+                        </button>
                     </div>
                 </div>
-            </th>
-            <th scope="col" class="text-right">Order Id</th>
-            <th scope="col" class="text-right">Order Date</th>
-            <th scope="col" class="text-right">Required Date</th>
-            <th scope="col" class="text-right">Shipped Date</th>
-        </tr>
+                <div class="form-group col-md-4 mb-0">
+                    <div class="form-check text-right">
+                        <input class="form-check-input" type="checkbox" id="Unshipped" checked>
+                        <label class="form-check-label" for="Unshipped">Unshipped</label>
+                    </div>
+                </div>
+            </div>
+        </th>
+        <th scope="col" class="text-left">Order ID</th>
+        <th scope="col" class="text-right">Order Date</th>
+        <th scope="col" class="text-right">Required Date</th>
+        <th scope="col" class="text-right">Shipped Date</th>
+    </tr>
     </thead>
     <tbody id="order_rows" data-id="@ViewBag.id">
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="colorKey" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Color Key</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="font-size:large">
+                <b class="unshipped">Orange</b>: Unshipped <br/>
+                <br/>
+                <b class="overdue">Red</b>: Overdue
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Order details modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Order #<span id="modalOrderId"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex flex-column justify-content-center">
+                <div class="row">
+                    <div class="px-3 pb-3">
+                        <div class="underline">Order Date</div>
+                        <div id="modalOrderDate"></div>
+                    </div>
+
+                    <div class="px-3 pb-3">
+                        <div class="underline">Required Date</div>
+                        <div id="modalRequiredDate"></div>
+                    </div>
+
+                    <div class="px-3 pb-3">
+                        <div class="underline">Shipped Date</div>
+                        <div id="modalShippedDate"></div>
+                    </div>
+
+                    <div class="px-3 pb-3">
+                        <div class="underline">Freight</div>
+                        <div id="modalFreight"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="p-3">
+                        <div class="underline">Customer Info</div>
+                        Name: <span id="modalCompanyName"></span><br/>
+                        Email: <span id="modalCustomerEmail"></span><br/>
+                        Phone: <span id="modalCustomerPhone"></span><br/>
+                        Fax: <span id="modalCustomerFax"></span>
+                    </div>
+
+                    <div class="p-3">
+                        <div class="underline">Employee Info</div>
+                        Name: <span id="modalEmployeeName"></span><br/>
+                        Email: <span id="modalEmployeeEmail"></span><br/>
+                        Extension: <span id="modalEmployeeExtension"></span>
+                    </div>
+
+                    <div class="p-3">
+                        <div class="underline">Shipping Label</div>
+                        <span id="modalShipName"></span><br/>
+                        <span id="modalShipAddress"></span><br/>
+                        <span id="modalShipCity"></span>, <span id="modalShipRegion"></span> <span id="modalShipPostalCode"></span> <span id="modalShipCountry"></span>
+                    </div>
+
+                    <div class="p-3">
+                        <div class="underline">Shipping Company</div>
+                        Name: <span id="modalShipperCompanyName"></span><br/>
+                        Phone: <span id="modalShipperPhone"></span>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-left">Product Name</th>
+                        <th scope="col" class="text-right">Quantity</th>
+                        <th scope="col" class="text-right">Unit Price</th>
+                        <th scope="col" class="text-right">Discount</th>
+                        <th scope="col" class="text-right">Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody id="modalOrderDetailsTable"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts
 {
